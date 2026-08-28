@@ -10,6 +10,13 @@ export function createAdminClient() {
   return createSupabaseClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { auth: { autoRefreshToken: false, persistSession: false } }
+    {
+      auth: { autoRefreshToken: false, persistSession: false },
+      global: {
+        // See server.ts: Next.js caches fetch() by default, which would
+        // otherwise let stale query results linger across requests.
+        fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+      },
+    }
   );
 }

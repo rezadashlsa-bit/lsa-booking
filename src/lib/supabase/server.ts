@@ -27,6 +27,14 @@ export async function createClient() {
           }
         },
       },
+      global: {
+        // Next.js App Router caches fetch() calls by default, including
+        // Supabase's internal HTTP requests. Without this, a query result
+        // (e.g. an empty table) can get cached and keep being served stale
+        // long after the underlying data changes. Every Supabase call in a
+        // Server Component/Action must always hit the database fresh.
+        fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+      },
     }
   );
 }
