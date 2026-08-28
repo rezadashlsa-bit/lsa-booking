@@ -7,11 +7,10 @@ import { ToggleActiveButton } from "@/components/ui/ToggleActiveButton";
 
 export default async function AdminCoachesPage() {
   const supabase = await createClient();
-  const {
-    data: coaches,
-    error,
-    status,
-  } = await supabase.from("coaches").select("*").order("created_at", { ascending: false });
+  const { data: coaches } = await supabase
+    .from("coaches")
+    .select("*")
+    .order("created_at", { ascending: false });
 
   return (
     <div className="space-y-6">
@@ -41,17 +40,6 @@ export default async function AdminCoachesPage() {
           </div>
         </ActionForm>
       </Card>
-
-      {error && (
-        <Card className="border-red-300 bg-red-50">
-          <p className="text-xs font-mono text-red-700 break-words">
-            DEBUG — status: {status}, error: {JSON.stringify(error)}
-          </p>
-        </Card>
-      )}
-      <p className="text-xs font-mono text-gray-400">
-        DEBUG — status: {status}, rows: {coaches ? coaches.length : "null"}
-      </p>
 
       <div className="space-y-2">
         {coaches?.length === 0 && <p className="text-sm text-gray-500">No coaches yet.</p>}
