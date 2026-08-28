@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/Button";
 export default async function PendingApprovalPage({
   searchParams,
 }: {
-  searchParams: Promise<{ reason?: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { reason } = await searchParams;
+  const allParams = await searchParams;
+  const reason = allParams.reason;
   const session = await getSessionProfile();
 
   if (!session) {
@@ -45,6 +46,11 @@ export default async function PendingApprovalPage({
         {reason && reason !== "no_match" && (
           <p className="text-xs text-red-600 mb-8 font-mono break-words">Debug detail: {reason}</p>
         )}
+        <p className="text-xs text-gray-400 mb-8 font-mono break-words">
+          userId: {session.userId}
+          <br />
+          all params: {JSON.stringify(allParams)}
+        </p>
         <form action={signOut}>
           <Button type="submit" variant="secondary" className="w-full">
             Sign out
