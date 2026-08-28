@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { href: "/admin/availability", text: "Availability" },
   { href: "/admin/bookings", text: "Bookings" },
   { href: "/admin/missed-sessions", text: "Missed Sessions" },
+  { href: "/admin/reports", text: "Reports" },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
