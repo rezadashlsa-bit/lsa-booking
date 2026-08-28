@@ -3,7 +3,12 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 
-export default async function PendingApprovalPage() {
+export default async function PendingApprovalPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ reason?: string }>;
+}) {
+  const { reason } = await searchParams;
   const session = await getSessionProfile();
 
   if (!session) {
@@ -37,6 +42,9 @@ export default async function PendingApprovalPage() {
         <p className="text-sm text-gray-600 mb-8">
           Please contact LSA admin with the email above so they can add you to the system.
         </p>
+        {reason && reason !== "no_match" && (
+          <p className="text-xs text-red-600 mb-8 font-mono break-words">Debug detail: {reason}</p>
+        )}
         <form action={signOut}>
           <Button type="submit" variant="secondary" className="w-full">
             Sign out

@@ -18,8 +18,13 @@ export async function GET(request: NextRequest) {
 
   const { data: profile, error: rpcError } = await supabase.rpc("ensure_profile");
 
-  if (rpcError || !profile) {
-    return NextResponse.redirect(`${origin}/pending-approval`);
+  if (rpcError) {
+    return NextResponse.redirect(
+      `${origin}/pending-approval?reason=${encodeURIComponent(rpcError.message)}`
+    );
+  }
+  if (!profile) {
+    return NextResponse.redirect(`${origin}/pending-approval?reason=no_match`);
   }
 
   const destination =
