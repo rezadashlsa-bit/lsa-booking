@@ -22,11 +22,7 @@ export async function getSessionProfile(): Promise<SessionProfile | null> {
     return null;
   }
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", user.id)
-    .maybeSingle();
+  const { data: profile } = await supabase.rpc("get_my_profile").maybeSingle();
 
   return { userId: user.id, email: user.email, profile: profile ?? null };
 }

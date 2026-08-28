@@ -327,6 +327,10 @@ export interface Database {
         Args: Record<string, never>;
         Returns: Database["public"]["Tables"]["profiles"]["Row"] | null;
       };
+      get_my_profile: {
+        Args: Record<string, never>;
+        Returns: Database["public"]["Tables"]["profiles"]["Row"] | null;
+      };
       book_slot: {
         Args: {
           p_slot_instance_id: string;
