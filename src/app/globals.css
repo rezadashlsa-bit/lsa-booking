@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  /* LSA brand tokens, matching the marketing site's palette but tuned for a
+     legible, functional app rather than a dark hero treatment. */
+  --lsa-black: #010101;
+  --lsa-white: #ffffff;
+  --lsa-green-deep: #485539;
+  --lsa-green-sage: #5b8862;
+  --lsa-green-mint: #7ba983;
+  --lsa-sand: #e8dbca;
+  --lsa-bg: #faf9f6;
+  --lsa-border: #e4e0d8;
+
+  --background: var(--lsa-bg);
+  --foreground: var(--lsa-black);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-lsa-black: var(--lsa-black);
+  --color-lsa-green-deep: var(--lsa-green-deep);
+  --color-lsa-green-sage: var(--lsa-green-sage);
+  --color-lsa-green-mint: var(--lsa-green-mint);
+  --color-lsa-sand: var(--lsa-sand);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-cormorant);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
