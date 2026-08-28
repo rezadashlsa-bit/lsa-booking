@@ -1,3 +1,0 @@
-module.exports=[96438,a=>{"use strict";var b=a.i(87924);a.i(38246);let c={primary:"bg-lsa-green-deep text-white hover:bg-lsa-black",secondary:"bg-white border border-lsa-border text-lsa-black hover:border-lsa-green-sage",ghost:"text-lsa-green-deep hover:bg-lsa-sand/40",danger:"bg-white border border-red-200 text-red-700 hover:bg-red-50"};a.s(["Button",0,function({variant:a="primary",className:d="",...e}){return(0,b.jsx)("button",{className:`inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors px-4 py-2.5 disabled:opacity-50 disabled:pointer-events-none ${c[a]} ${d}`,...e})}])}];
-
-//# sourceMappingURL=src_components_ui_Button_tsx_21b1bs7._.js.map
